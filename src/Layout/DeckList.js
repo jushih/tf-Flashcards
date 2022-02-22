@@ -58,7 +58,7 @@ function DeckList() {
             </div>
 
             <div>
-            <DeleteDeck deck={deck} navType="Study"/>
+            <DeleteDeck deck={deck} />
             </div>
 
             </div>
