@@ -8,7 +8,7 @@ const history = useHistory();
   
 const deleteHandler = () => {
     if (
-      window.confirm("Are you sure you want to delete this deck")
+      window.confirm("Are you sure you want to delete this card?")
     ) {
       deleteCard(card.id);
       window.location.reload();

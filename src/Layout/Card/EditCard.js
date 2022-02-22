@@ -1,75 +1,97 @@
-import React, {useEffect, useState} from "react";
-import { readCard,readDeck } from "../../utils/api/index";
-import Navbar from "../Navbar"
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { readCard, readDeck, updateCard } from "../../utils/api/index";
+import Navbar from "../Navbar";
+import { useParams, useHistory} from "react-router-dom";
 
-function EditCard( ) {
+function EditCard() {
+  const history = useHistory();
+  const [deck, setDeck] = useState([]);
+  const [card, setCard] = useState([]);
+  const deckId = useParams().deckId;
+  const cardId = useParams().cardId;
 
-const [deck, setDeck] = useState([]);
-const [card, setCard] = useState([]);
-const deckId = useParams().deckId;
-const cardId = useParams().cardId;
-
-useEffect(() => {
+  useEffect(() => {
     async function readDecksAndCards() {
       try {
-      const deckResponse = readDeck(deckId);
-      const decksFromAPI = await deckResponse;
+        const deckResponse = readDeck(deckId);
+        const decksFromAPI = await deckResponse;
 
-      const cardResponse = readCard(cardId);
-      const cardsFromAPI = await cardResponse;
+        const cardResponse = readCard(cardId);
+        const cardsFromAPI = await cardResponse;
 
-      setDeck(decksFromAPI);
-      setCard(cardsFromAPI);
+        setDeck(decksFromAPI);
+        setCard(cardsFromAPI);
+      } catch (error) {
+        console.log("Read deck error: ", error);
+      }
     }
-   catch (error) {
-    console.log("Read deck error: ", error)
-  }
+    readDecksAndCards();
+  }, []);
+
+  //console.log("card", card.front);
+
+  const changeBackHandler = (event) => {
+    setCard({...card, back: event.target.value})
 }
-  readDecksAndCards();
-}, []);
 
+const changeFrontHandler = (event) => {
+    setCard({...card, front: event.target.value})
+}
 
-console.log("card",card.front)
-  
+const submitFormHandler = async (event) => {
+  event.preventDefault();
+  console.log("submitting form...")
+  await updateCard(card);
+  history.push(`/decks/${deck.id}`)
+}
 
-    return (
+const cancelHandler = async (event) => {
+  event.preventDefault();
+  history.push(`/decks/${deck.id}`)
+}
 
-        <div>
-      
-        <Navbar deck={deck} navType="Edit" />
-        <h1>Edit Card</h1>
+  return (
+    <div>
+      <Navbar deck={deck} navType="Edit Card" />
+      <h1>Edit Card</h1>
 
-        <form>
-  <div class="form-group">
-    <label for="cardFront"><h4>Front</h4></label>
-    <textarea type="text" class="form-control" id="cardFront" placeholder={card.front}>
-  {card.front}</textarea></div>
-  <div class="form-group">
-    <label for="cardBack"><h4>Back</h4></label>
-    <textarea type="text" class="form-control" id="cardBack" placeholder="placeholder">
-  </textarea></div>
-
-  </form>
-  
+      <form onSubmit={submitFormHandler} >
         
-        <Link to={`/decks/${deck.id}/`}>
-            <button type="button" class="btn btn-secondary mr-2">
-            Cancel
-            </button>
-          </Link>
-
-          <Link to={`/decks/${deck.id}/`}>
-            <button type="button" class="btn btn-primary">
-            Submit
-            </button>
-          </Link>
-    
-      
-        
+        <div class="form-group">
+          <label>
+            <h4>Front</h4>
+          </label>
+          <textarea
+            class="form-control"
+            name="front"
+            id="front"
+            value={card.front}
+            onChange={changeFrontHandler}
+          ></textarea>
         </div>
         
-    )
+        <div class="form-group">
+          <label>
+            <h4>Back</h4>
+          </label>
+          <textarea
+            class="form-control"
+            name="back"
+            id="back"
+            value={card.back}
+            onChange={changeBackHandler}
+          ></textarea>
+        </div>
+
+          <button type="button" class="btn btn-secondary mr-2" onClick={cancelHandler}>
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+      </form>
+    </div>
+  );
 }
 
 export default EditCard;

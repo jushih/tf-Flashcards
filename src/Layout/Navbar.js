@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar({ deck, navType }) {
 
-console.log("deck param",deck, navType)
+//console.log("deck param",deck, navType)
 
   return (
     <nav aria-label="breadcrumb">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { readDeck, readCard } from "../utils/api/index";
+import { readDeck } from "../utils/api/index";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import DeleteDeck from "./DeleteDeck";
@@ -29,7 +29,7 @@ function ViewDeck() {
     readDeckFromAPI();
   }, []);
 
-  console.log("card", cards);
+  //console.log("card", cards);
 
   return (
     <div>
@@ -39,7 +39,7 @@ function ViewDeck() {
 
       <div class="d-flex justify-content-between">
         <div>
-          <Link to={`/decks/${deck.id}`}>
+          <Link to={`/decks/${deck.id}/edit`}>
             <button type="button" class="btn btn-secondary mr-2">
               Edit
             </button>
@@ -51,7 +51,7 @@ function ViewDeck() {
             </button>
           </Link>
 
-          <Link to={`/decks/${deck.id}/add`}>
+          <Link to={`/decks/${deck.id}/cards/new`}>
             <button type="button" class="btn btn-primary">
               Add Cards
             </button>
