@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { readDeck } from "../utils/api/index";
+import { readDeck } from "../../utils/api/index";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import DeleteDeck from "./DeleteDeck";
-import DeleteCard from "./Card/DeleteCard";
+import DeleteDeck from "../Deck/DeleteDeck";
+import DeleteCard from "../Card/DeleteCard";
 
 function ViewDeck() {
   // load deckId from params and use that to load deck info and card info
@@ -63,9 +63,9 @@ function ViewDeck() {
         </div>
       </div>
 
-      <p></p>
+      <p/>
       <h1>Cards</h1>
-
+      <p/>
       {cards.map((card, index) => {
         return (
           <div class="card" key={index}>

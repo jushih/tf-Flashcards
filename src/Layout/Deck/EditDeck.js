@@ -1,13 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { createDeck } from "../utils/api/index";
-import Navbar from "./Navbar";
-import { useHistory} from "react-router-dom";
-  
+import React, {useEffect, useState} from "react";
+import Navbar from "../Display/Navbar"
+import { readDeck, updateDeck } from "../../utils/api/index";
+import { useParams, useHistory } from "react-router-dom";
 
-
-function CreateDeck() {
+function EditDeck( ) {
   const history = useHistory();
+  // read the selected single deck from API and set as param
+  const deckId = useParams().deckId;
   const [deck, setDeck] = useState([]);
+
+  useEffect(() => {
+      async function readDecks() {
+        try {
+        const response = readDeck(deckId);
+        const decksFromAPI = await response;
+        setDeck(decksFromAPI);
+      }
+     catch (error) {
+      console.log("Read deck error: ", error)
+    }
+  }
+    readDecks();
+  }, []);
 
 
   const changeNameHandler = (event) => {
@@ -18,24 +32,26 @@ function CreateDeck() {
     setDeck({...deck, description: event.target.value})
 }
 
-const submitFormHandler = async (event) => {
-  event.preventDefault();
-  console.log("submitting form...")
-  await createDeck(deck);
-  history.push(`/`)
-}
+  const cancelHandler = async (event) => {
+    event.preventDefault();
+    history.push(`/decks/${deck.id}`)
+  }
 
-const cancelHandler = async (event) => {
-  event.preventDefault();
-  history.push(`/`)
-}
+  const submitFormHandler = async (event) => {
+    event.preventDefault();
+    console.log("submitting form...", deck)
+    await updateDeck(deck);
+    history.push(`/decks/${deck.id}`)
+  }
+  
 
-  return (
+    return (
     <div>
-      <Navbar deck={deck} navType="Create Deck" />
-      <h1>Create Deck</h1>
+      
+    <Navbar deck={deck} navType="Edit Deck" />
+    <h1>Edit Deck</h1><p/>
 
-      <form onSubmit={submitFormHandler} >
+    <form onSubmit={submitFormHandler} >
         
         <div class="form-group">
           <label>
@@ -45,7 +61,6 @@ const cancelHandler = async (event) => {
             class="form-control"
             name="name"
             id="name"
-            placeholder="Deck Name"
             value={deck.name}
             onChange={changeNameHandler}
           ></textarea>
@@ -59,8 +74,6 @@ const cancelHandler = async (event) => {
             class="form-control"
             name="description"
             id="description"
-            rows="6"
-            placeholder="Brief description of deck."
             value={deck.description}
             onChange={changeDescHandler}
           ></textarea>
@@ -74,8 +87,12 @@ const cancelHandler = async (event) => {
           </button>
       </form>
   
+    
     </div>
-  );
+
+    )
+  
+
 }
 
-export default CreateDeck;
+export default EditDeck;

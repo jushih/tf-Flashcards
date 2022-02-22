@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { listDecks } from "../utils/api/index";
+import { listDecks } from "../../utils/api/index";
 import DeleteDeck from "./DeleteDeck"
 import { Link } from "react-router-dom";
 
@@ -52,8 +52,8 @@ function DeckList() {
 
             <Link to={`/decks/${deck.id}/study`}>
             <button type="button" class="btn btn-primary" >
-      Study
-    </button>
+              Study
+            </button>
             </Link>
             </div>
 

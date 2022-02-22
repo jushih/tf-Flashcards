@@ -1,15 +1,15 @@
 import React from "react";
 import { Fragment } from "react";
-import Header from "./Header";
-import NotFound from "./NotFound";
-import CreateDeckButton from "./CreateDeckButton";
-import CreateDeck from "./CreateDeck";
-import DeckList from "./DeckList";
-import StudyDeck from "./StudyDeck";
-import ViewDeck from "./ViewDeck";
+import Header from "./Display/Header";
+import NotFound from "./Display/NotFound";
+import ViewDeck from "./Display/ViewDeck";
+import CreateDeckButton from "./Deck/CreateDeckButton";
+import CreateDeck from "./Deck/CreateDeck";
+import DeckList from "./Deck/DeckList";
+import StudyDeck from "./Deck/StudyDeck";
+import EditDeck from "./Deck/EditDeck";
 import AddCard from "./Card/AddCard";
 import EditCard from "./Card/EditCard";
-import EditDeck from "./EditDeck";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
