@@ -33,7 +33,7 @@ function ViewDeck() {
 
   return (
     <div>
-      <Navbar deck={deck} navtype="View" />
+      <Navbar deck={deck} navType="View" />
       <h3>{deck.name}</h3>
       <p>{deck.description}</p>
 
@@ -75,14 +75,14 @@ function ViewDeck() {
                 <div class="col"></div>
                 <div class="col">{card.back}</div>
               </div>
-            <p></p>
+              <p></p>
               <div class="d-flex justify-content-end">
-              <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
-                <button type="button" class="btn btn-secondary mr-2">
-                  Edit
-                </button>
+                <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
+                  <button type="button" class="btn btn-secondary mr-2">
+                    Edit
+                  </button>
                 </Link>
-                <DeleteCard card={card}/>
+                <DeleteCard card={card} />
               </div>
             </div>
           </div>
