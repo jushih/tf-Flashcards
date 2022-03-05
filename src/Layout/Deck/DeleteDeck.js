@@ -14,7 +14,7 @@ function DeleteDeck({ deck }) {
 
   return (
     <button type="button" class="btn btn-danger" onClick={deleteHandler}>
-      Delete
+    <i class="fas fa-trash-alt"></i>
     </button>
   );
 }

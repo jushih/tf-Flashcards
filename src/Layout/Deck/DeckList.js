@@ -45,14 +45,14 @@ function DeckList() {
 
             <Link to={`/decks/${deck.id}`}>
             <button type="button" class="btn btn-secondary mr-2">
-              View
+            <i class="fas fa-eye"></i> View
             </button>
             </Link>
 
 
             <Link to={`/decks/${deck.id}/study`}>
             <button type="button" class="btn btn-primary" >
-              Study
+            <i class="fas fa-book"></i>  Study
             </button>
             </Link>
             </div>

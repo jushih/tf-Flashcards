@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { readCard, readDeck, updateCard } from "../../utils/api/index";
+import { readCard, readDeck } from "../../utils/api/index";
 import Navbar from "../Display/Navbar";
 import { useParams, useHistory } from "react-router-dom";
+import Form from "./Form"
 
 function EditCard() {
   const history = useHistory();
@@ -30,69 +31,13 @@ function EditCard() {
 
   //console.log("card", card.front);
 
-  const changeBackHandler = (event) => {
-    setCard({ ...card, back: event.target.value });
-  };
-
-  const changeFrontHandler = (event) => {
-    setCard({ ...card, front: event.target.value });
-  };
-
-  const submitFormHandler = async (event) => {
-    event.preventDefault();
-    console.log("submitting form...");
-    await updateCard(card);
-    history.push(`/decks/${deck.id}`);
-  };
-
-  const cancelHandler = async (event) => {
-    event.preventDefault();
-    history.push(`/decks/${deck.id}`);
-  };
-
   return (
     <div>
       <Navbar deck={deck} navType="Edit Card" />
       <h1>Edit Card</h1>
 
-      <form onSubmit={submitFormHandler}>
-        <div class="form-group">
-          <label>
-            <h4>Front</h4>
-          </label>
-          <textarea
-            class="form-control"
-            name="front"
-            id="front"
-            value={card.front}
-            onChange={changeFrontHandler}
-          ></textarea>
-        </div>
+      <Form card={card} cardFront={card.front} cardBack={card.back} deck={deck} deckId={deckId} formType="Edit Card"/>
 
-        <div class="form-group">
-          <label>
-            <h4>Back</h4>
-          </label>
-          <textarea
-            class="form-control"
-            name="back"
-            id="back"
-            value={card.back}
-            onChange={changeBackHandler}
-          ></textarea>
-        </div>
-
-        <button
-          type="button"
-          class="btn btn-secondary mr-2"
-          onClick={cancelHandler}
-        >
-          Cancel
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Submit
-        </button>
-      </form>
     </div>
   );
 }

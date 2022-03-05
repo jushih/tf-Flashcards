@@ -41,19 +41,19 @@ function ViewDeck() {
         <div>
           <Link to={`/decks/${deck.id}/edit`}>
             <button type="button" class="btn btn-secondary mr-2">
-              Edit
+            <i class="fas fa-pencil-alt"></i> Edit
             </button>
           </Link>
 
           <Link to={`/decks/${deck.id}/study`}>
             <button type="button" class="btn btn-primary mr-2">
-              Study
+            <i class="fas fa-book"></i> Study
             </button>
           </Link>
 
           <Link to={`/decks/${deck.id}/cards/new`}>
             <button type="button" class="btn btn-primary">
-              Add Cards
+            <i class="fa fa-plus"></i> Add Cards
             </button>
           </Link>
         </div>
@@ -79,7 +79,7 @@ function ViewDeck() {
               <div class="d-flex justify-content-end">
                 <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
                   <button type="button" class="btn btn-secondary mr-2">
-                    Edit
+                  <i class="fas fa-pencil-alt"></i>  Edit
                   </button>
                 </Link>
                 <DeleteCard card={card} />

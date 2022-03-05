@@ -1,9 +1,7 @@
 import React from "react";
 import { deleteCard } from "../../utils/api/index";
-import { useHistory } from "react-router-dom";
 
 function DeleteCard({ card }) {
-  const history = useHistory();
 
   const deleteHandler = () => {
     if (window.confirm("Are you sure you want to delete this card?")) {
@@ -14,7 +12,7 @@ function DeleteCard({ card }) {
 
   return (
     <button type="button" class="btn btn-danger" onClick={deleteHandler}>
-      Delete
+     <i class="fas fa-trash-alt"></i>
     </button>
   );
 }
