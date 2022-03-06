@@ -41,15 +41,15 @@ const cancelHandler = async (event) => {
           <label>
             <h4>Name</h4>
           </label>
-          <textarea
+          <input
             class="form-control"
             name="name"
             id="name"
-            rows="1"
+            type="text"
             placeholder="Deck Name"
             value={deck.name}
             onChange={changeNameHandler}
-          ></textarea>
+          />
         </div>
         
         <div class="form-group">

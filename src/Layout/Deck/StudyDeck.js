@@ -42,23 +42,23 @@ function StudyDeck() {
     if (cardIndex + 1 == cards.length) {
       if (
         window.confirm(
-          "You've reached the end of this deck. Restart cards? Or click 'cancel' to return to the home page.")
+          "You've reached the end of this deck. Restart cards? Or click 'cancel' to return to the home page."
+        )
       ) {
-        console.log('reset index')
+        console.log("reset index");
         setCardIndex(0);
         setCardAnswer(false);
-        console.log('card index',cardIndex)
+        console.log("card index", cardIndex);
       } else {
         history.push("/");
       }
-    } else
-    {
+    } else {
       setCardIndex(cardIndex + 1);
       setCardAnswer(false);
     }
   };
 
-  /* if there are less than 3 cards, redirect to create a card */
+  // if there are less than 3 cards, redirect to create a card 
   if (cards.length < 3) {
     return (
       <div>
@@ -75,7 +75,41 @@ function StudyDeck() {
         </Link>
       </div>
     );
-  } else {
+  } 
+  // shows the back of the card
+  else {
+    if (cardAnswer) {
+      return (
+        <div>
+          <Navbar deck={deck} navType="Study" />
+          <h1>Study: {deck.name}</h1>
+          <p />
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                Card {cardIndex + 1} of {cards.length}
+              </h5>
+              <p class="card-text">{cards[cardIndex].back}</p>
+              <button
+                type="button"
+                class="btn btn-secondary mr-2"
+                onClick={flipHandler}
+              >
+                Flip
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary mr-2"
+                onClick={nextCardHandler}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    // shows the front of the card
     return (
       <div>
         <Navbar deck={deck} navType="Study" />
@@ -84,36 +118,16 @@ function StudyDeck() {
 
         <div class="card">
           <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <div class="col"></div>
-              <div class="col"></div>
-              <div class="col"></div>
-            </div>
-            <p />
-            <h3>
+            <h5 class="card-title">
               Card {cardIndex + 1} of {cards.length}
-            </h3>
-
-            {cardAnswer ? (
-              <p>{cards[cardIndex]?.back}</p>
-            ) : (
-              <p>{cards[cardIndex]?.front}</p>
-            )}
-
-            <p />
+            </h5>
+            <p class="card-text">{cards[cardIndex].front}</p>
             <button
               type="button"
               class="btn btn-secondary mr-2"
               onClick={flipHandler}
             >
               Flip
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary mr-2"
-              onClick={nextCardHandler}
-            >
-              Next
             </button>
           </div>
         </div>
