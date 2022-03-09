@@ -7,7 +7,6 @@ function DeckList() {
 
   // read deck from API and set as param
   const [decks, setDecks] = useState([]);
-  const [cards, setCards] = useState([]);
 
   useEffect(() => {
       async function loadDecks() {
@@ -15,7 +14,7 @@ function DeckList() {
         const response = listDecks();
         const decksFromAPI = await response;
         setDecks(decksFromAPI);
-        setCards(decksFromAPI.cards)
+    
       }
      catch (error) {
       console.log("Load deck error: ", error)

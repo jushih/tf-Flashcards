@@ -21,7 +21,7 @@ function EditDeck( ) {
     }
   }
     readDecks();
-  }, []);
+  }, [deckId]);
 
 
   const changeNameHandler = (event) => {

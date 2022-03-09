@@ -27,7 +27,7 @@ function ViewDeck() {
       }
     }
     readDeckFromAPI();
-  }, []);
+  }, [deckId]);
 
   //console.log("card", cards);
 

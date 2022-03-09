@@ -26,7 +26,7 @@ function StudyDeck() {
       }
     }
     loadDecks();
-  }, []);
+  }, [deckId]);
 
   //console.log(cards[cardIndex])
 
@@ -39,7 +39,7 @@ function StudyDeck() {
   };
 
   const nextCardHandler = (event) => {
-    if (cardIndex + 1 == cards.length) {
+    if (cardIndex + 1 === cards.length) {
       if (
         window.confirm(
           "You've reached the end of this deck. Restart cards? Or click 'cancel' to return to the home page."

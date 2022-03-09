@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { readCard, readDeck } from "../../utils/api/index";
 import Navbar from "../Display/Navbar";
-import { useParams, useHistory } from "react-router-dom";
-import Form from "./Form"
+import { useParams } from "react-router-dom";
+import Form from "./CardForm"
 
 function EditCard() {
-  const history = useHistory();
   const [deck, setDeck] = useState([]);
   const [card, setCard] = useState([]);
   const deckId = useParams().deckId;
@@ -27,7 +26,7 @@ function EditCard() {
       }
     }
     readDecksAndCards();
-  }, []);
+  }, [deckId, cardId]);
 
   //console.log("card", card.front);
 

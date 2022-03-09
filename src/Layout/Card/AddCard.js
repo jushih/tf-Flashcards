@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { readDeck } from "../../utils/api/index";
 import Navbar from "../Display/Navbar";
-import Form from "./Form"
+import Form from "./CardForm"
 import { useParams } from "react-router-dom";
 
 function AddCard() {
@@ -21,7 +21,7 @@ function AddCard() {
       }
     }
     readSelectedDeck();
-  }, []);
+  }, [deckId]);
 
 
   return (
