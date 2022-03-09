@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { readCard, readDeck } from "../../utils/api/index";
 import Navbar from "../Display/Navbar";
-import { useParams } from "react-router-dom";
-import Form from "./CardForm"
+import { useParams, useHistory } from "react-router-dom";
+import { updateCard } from "../../utils/api/index";
 
 function EditCard() {
+  const history = useHistory();
   const [deck, setDeck] = useState([]);
   const [card, setCard] = useState([]);
   const deckId = useParams().deckId;
@@ -28,6 +29,29 @@ function EditCard() {
     readDecksAndCards();
   }, [deckId, cardId]);
 
+
+  const changeFrontHandler = (event) => {
+    setCard({ ...card, front: event.target.value });
+  };
+
+  const changeBackHandler = (event) => {
+    setCard({ ...card, back: event.target.value });
+  };
+
+  const submitFormHandler = async (event) => {
+    event.preventDefault();
+
+    // add card or update card
+    await updateCard(card);
+
+    window.location.reload();
+  };
+
+  const cancelHandler = async (event) => {
+    event.preventDefault();
+    history.push(`/decks/${deck.id}`);
+  };
+
   //console.log("card", card.front);
 
   return (
@@ -35,7 +59,46 @@ function EditCard() {
       <Navbar deck={deck} navType="Edit Card" />
       <h1>Edit Card</h1>
 
-      <Form card={card} cardFront={card.front} cardBack={card.back} deck={deck} deckId={deckId} formType="Edit Card"/>
+      <div>
+      <form onSubmit={submitFormHandler}>
+        <div class="form-group">
+          <label>
+            <h4>Front</h4>
+          </label>
+          <textarea
+            class="form-control"
+            name="front"
+            id="front"
+            value={card.front}
+            onChange={changeFrontHandler}
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <h4>Back</h4>
+          </label>
+          <textarea
+            class="form-control"
+            name="back"
+            id="back"
+            value={card.back}
+            onChange={changeBackHandler}
+          ></textarea>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-secondary mr-2"
+          onClick={cancelHandler}
+        >
+          Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
 
     </div>
   );

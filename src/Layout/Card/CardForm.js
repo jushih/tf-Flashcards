@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { createCard, updateCard } from "../../utils/api/index";
+import { createCard } from "../../utils/api/index";
 import { useHistory } from "react-router-dom";
 
-function Form({ cardFront, cardBack, deck, deckId, formType }) {
+function Form({ deck, deckId, formType }) {
 
   const history = useHistory();
   const [card, setCard] = useState([]);
@@ -18,12 +18,7 @@ function Form({ cardFront, cardBack, deck, deckId, formType }) {
   const submitFormHandler = async (event) => {
     event.preventDefault();
 
-    // add card or update card
-    if (formType === "Add Card") {
-      await createCard(deckId, card);
-    } else {
-      await updateCard(card);
-    }
+    await createCard(deckId, card);
 
     window.location.reload();
   };
@@ -44,7 +39,7 @@ function Form({ cardFront, cardBack, deck, deckId, formType }) {
             class="form-control"
             name="front"
             id="front"
-            value={cardFront}
+            value={card.front}
             onChange={changeFrontHandler}
           ></textarea>
         </div>
@@ -57,7 +52,7 @@ function Form({ cardFront, cardBack, deck, deckId, formType }) {
             class="form-control"
             name="back"
             id="back"
-            value={cardBack}
+            value={card.back}
             onChange={changeBackHandler}
           ></textarea>
         </div>
