@@ -3,7 +3,6 @@ import { createCard } from "../../utils/api/index";
 import { useHistory } from "react-router-dom";
 
 function Form({ deck, deckId, formType }) {
-
   const history = useHistory();
   const [card, setCard] = useState([]);
 
@@ -18,9 +17,13 @@ function Form({ deck, deckId, formType }) {
   const submitFormHandler = async (event) => {
     event.preventDefault();
 
-    await createCard(deckId, card);
+    if (!card.front || card.back) {
+      window.confirm("Please fill out both front and back of card.");
+    } else {
+      await createCard(deckId, card);
 
-    window.location.reload();
+      window.location.reload();
+    }
   };
 
   const cancelHandler = async (event) => {
@@ -31,7 +34,7 @@ function Form({ deck, deckId, formType }) {
   return (
     <div>
       <form onSubmit={submitFormHandler}>
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Front</h4>
           </label>
@@ -44,7 +47,7 @@ function Form({ deck, deckId, formType }) {
           ></textarea>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Back</h4>
           </label>
@@ -68,7 +71,10 @@ function Form({ deck, deckId, formType }) {
           Submit
         </button>
       </form>
+      <p/>
+      <p/>
     </div>
+
   );
 }
 

@@ -5,7 +5,7 @@ function CreateDeckButton() {
   return (
     <div className="CreateDeckButton">
      <Link to={`/decks/new`}>
-     <button type="button" class="btn btn-secondary"><i class="fa fa-plus"></i> Create Deck</button>
+     <button type="button" class="btn btn-secondary"><i className="fa fa-plus"></i> Create Deck</button>
      </Link>
      <p/>
     </div>

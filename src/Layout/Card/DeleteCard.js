@@ -12,7 +12,7 @@ function DeleteCard({ card }) {
 
   return (
     <button type="button" class="btn btn-danger" onClick={deleteHandler}>
-     <i class="fas fa-trash-alt"></i>
+     <i className="fas fa-trash-alt"></i>
     </button>
   );
 }

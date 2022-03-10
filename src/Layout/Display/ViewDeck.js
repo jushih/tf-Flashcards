@@ -12,7 +12,7 @@ function ViewDeck() {
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
 
-  console.log("deckid", useParams(), deckId);
+  //console.log("deckid", useParams(), deckId);
 
   useEffect(() => {
     async function readDeckFromAPI() {
@@ -37,23 +37,23 @@ function ViewDeck() {
       <h3>{deck.name}</h3>
       <p>{deck.description}</p>
 
-      <div class="d-flex justify-content-between">
+      <div className="d-flex justify-content-between">
         <div>
           <Link to={`/decks/${deck.id}/edit`}>
-            <button type="button" class="btn btn-secondary mr-2">
-            <i class="fas fa-pencil-alt"></i> Edit
+            <button type="button" className="btn btn-secondary mr-2">
+            <i className="fas fa-pencil-alt"></i> Edit
             </button>
           </Link>
 
           <Link to={`/decks/${deck.id}/study`}>
-            <button type="button" class="btn btn-primary mr-2">
-            <i class="fas fa-book"></i> Study
+            <button type="button" className="btn btn-primary mr-2">
+            <i className="fas fa-book"></i> Study
             </button>
           </Link>
 
           <Link to={`/decks/${deck.id}/cards/new`}>
-            <button type="button" class="btn btn-primary">
-            <i class="fa fa-plus"></i> Add Cards
+            <button type="button" className="btn btn-primary">
+            <i className="fa fa-plus"></i> Add Cards
             </button>
           </Link>
         </div>
@@ -68,18 +68,18 @@ function ViewDeck() {
       <p/>
       {cards.map((card, index) => {
         return (
-          <div class="card" key={index}>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <div class="col">{card.front}</div>
-                <div class="col"></div>
-                <div class="col">{card.back}</div>
+          <div className="card" key={index}>
+            <div className="card-body">
+              <div className="d-flex justify-content-between">
+                <div className="col">{card.front}</div>
+                <div className="col"></div>
+                <div className="col">{card.back}</div>
               </div>
               <p></p>
-              <div class="d-flex justify-content-end">
+              <div className="d-flex justify-content-end">
                 <Link to={`/decks/${deck.id}/cards/${card.id}/edit`}>
-                  <button type="button" class="btn btn-secondary mr-2">
-                  <i class="fas fa-pencil-alt"></i>  Edit
+                  <button type="button" className="btn btn-secondary mr-2">
+                  <i className="fas fa-pencil-alt"></i>  Edit
                   </button>
                 </Link>
                 <DeleteCard card={card} />

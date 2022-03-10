@@ -53,7 +53,7 @@ function EditDeck( ) {
 
     <form onSubmit={submitFormHandler} >
         
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Name</h4>
           </label>
@@ -66,7 +66,7 @@ function EditDeck( ) {
           ></textarea>
         </div>
         
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Description</h4>
           </label>

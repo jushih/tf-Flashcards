@@ -30,28 +30,28 @@ function DeckList() {
       
       {decks.map((deck, index) => {
         return (
-          <div class="card" key={index}>
-            <div class="card-body">
-            <div class="d-flex justify-content-between">
+          <div className="card" key={index}>
+            <div className="card-body">
+            <div className="d-flex justify-content-between">
             <h5 class="card-title">{deck.name}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{deck.cards.length} cards</h6>
               </div>
             
             <p class="card-text">{deck.description}</p>
 
-            <div class="d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <div>
 
             <Link to={`/decks/${deck.id}`}>
             <button type="button" class="btn btn-secondary mr-2">
-            <i class="fas fa-eye"></i> View
+            <i className="fas fa-eye"></i> View
             </button>
             </Link>
 
 
             <Link to={`/decks/${deck.id}/study`}>
             <button type="button" class="btn btn-primary" >
-            <i class="fas fa-book"></i>  Study
+            <i className="fas fa-book"></i>  Study
             </button>
             </Link>
             </div>

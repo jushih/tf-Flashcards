@@ -61,7 +61,7 @@ function EditCard() {
 
       <div>
       <form onSubmit={submitFormHandler}>
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Front</h4>
           </label>
@@ -74,7 +74,7 @@ function EditCard() {
           ></textarea>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label>
             <h4>Back</h4>
           </label>

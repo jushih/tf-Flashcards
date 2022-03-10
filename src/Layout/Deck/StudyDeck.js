@@ -84,8 +84,8 @@ function StudyDeck() {
           <Navbar deck={deck} navType="Study" />
           <h1>Study: {deck.name}</h1>
           <p />
-          <div class="card">
-            <div class="card-body">
+          <div className="card">
+            <div className="card-body">
               <h5 class="card-title">
                 Card {cardIndex + 1} of {cards.length}
               </h5>
@@ -116,8 +116,8 @@ function StudyDeck() {
         <h1>Study: {deck.name}</h1>
         <p />
 
-        <div class="card">
-          <div class="card-body">
+        <div className="card">
+          <div className="card-body">
             <h5 class="card-title">
               Card {cardIndex + 1} of {cards.length}
             </h5>
