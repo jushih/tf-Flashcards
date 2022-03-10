@@ -17,7 +17,7 @@ function Form({ deck, deckId, formType }) {
   const submitFormHandler = async (event) => {
     event.preventDefault();
 
-    if (!card.front || card.back) {
+    if (!card.front || !card.back) {
       window.confirm("Please fill out both front and back of card.");
     } else {
       await createCard(deckId, card);
